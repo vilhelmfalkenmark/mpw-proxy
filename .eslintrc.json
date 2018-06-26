@@ -1,0 +1,11 @@
+{
+  "extends": ["prettier"],
+  "plugins": ["import"],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  }
+}

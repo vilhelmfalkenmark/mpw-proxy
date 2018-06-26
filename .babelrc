@@ -1,0 +1,26 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "node": "8.11.3"
+        }
+      }
+    ]
+  ],
+  "ignore": [
+    "node_modules/*.js"
+  ],
+  "plugins": [
+    [
+      "babel-plugin-inline-import",
+      {
+        "extensions": [
+          ".graphql"
+        ]
+      }
+    ],
+    "transform-object-rest-spread"
+  ]
+}
