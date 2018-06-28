@@ -12,12 +12,19 @@ export default {
       `http://localhost:8888/delivery?deliveryId=${deliveryId}`
   },
   authenticationEndpoints: {
-    postAuthentication: () => `http://localhost:8888/authentication`
+    postPhoneAuthentication: () =>
+      `http://localhost:8888/authentication/phonenumber`,
+    postEmailAuthentication: () => `http://localhost:8888/authentication/email`
   },
   userEndpoints: {
     getUser: () => `http://localhost:8888/user`
   },
   contentfulPageEndpoints: {
-    getPage: ({ path }) => `${contentfulConfig.deliveryApiPath}/spaces/${contentfulConfig.spaceId}/environments/${contentfulConfig.environmentId}/entries?access_token=${contentfulConfig.deliveryAccessToken}&content_type=page&fields.path=${path}`
+    getPage: ({ path }) =>
+      `${contentfulConfig.deliveryApiPath}/spaces/${
+        contentfulConfig.spaceId
+      }/environments/${contentfulConfig.environmentId}/entries?access_token=${
+        contentfulConfig.deliveryAccessToken
+      }&content_type=page&fields.path=${path}`
   }
 };

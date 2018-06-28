@@ -1,6 +1,6 @@
 export default ({ model }) => ({
   Mutation: {
-    postAuthentication: (_, { params: { token } }) =>
-      model.postAuthentication({ token })
+    postPhoneAuthentication: (_, { params: { phoneNumber, pinCode } }) =>
+      model.postPhoneAuthentication({ phoneNumber, pinCode })
   }
 });

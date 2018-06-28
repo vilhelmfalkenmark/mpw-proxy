@@ -1,18 +1,20 @@
-// import { view, lensPath } from "ramda";
-
 export default ({ connector, endpoints }) => {
-  //////////////////////////////////////////////////
   /**
-   * Test reuest
+   * @function postPhoneAuthentication
+   * @param phoneNumber
+   * @param pinCode
    */
-  //////////////////////////////////////////////////
 
-  const postAuthentication = ({ token }) =>
+  const postPhoneAuthentication = ({ phoneNumber, pinCode }) =>
+    console.log(phoneNumber, " phoneNumber") ||
     connector
-      .postRequest({ path: endpoints.postAuthentication(), data: { token } })
+      .postRequest({
+        path: endpoints.postPhoneAuthentication(),
+        data: { phoneNumber, pinCode }
+      })
       .then(response => response);
 
   return {
-    postAuthentication
+    postPhoneAuthentication
   };
 };

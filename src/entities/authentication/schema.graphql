@@ -1,0 +1,13 @@
+type tokenType {
+  token: String!
+  userData: userType
+}
+
+input phoneAuthenticationArgs {
+  phoneNumber: Float!
+  pinCode: Int!
+}
+
+extend type Mutation {
+  postPhoneAuthentication(params: phoneAuthenticationArgs): tokenType
+}

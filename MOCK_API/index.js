@@ -20,6 +20,11 @@ const deliveries = [
     postCode: 12000
   }
 ];
+const userData = {
+  name: "T-Rex",
+  postcode: 12345,
+  userId: 666
+};
 
 app.get("/number", (req, res) => {
   console.log(req.query);
@@ -44,26 +49,28 @@ app.get("/delivery", (req, res) => {
   res.json(delivery);
 });
 
-app.post("/authentication", (req, res) => {
-  if (req.body.token === 1) {
-    res.json({ authenticated: true });
-  } else {
-    res.json({ authenticated: false });
-  }
+app.post("/authentication/phonenumber", (req, res) => {
+  console.log("Körs mot /authentication/phonenumber");
+
+  console.log(req.body);
+  res.json({ token: "abc123", userData });
+  // if (req.body.token === 1) {
+  //   res.json({ authenticated: true });
+  // } else {
+  //   res.json({ authenticated: false });
+  // }
 });
 
 app.get("/user", (req, res) => {
   if (req.headers.jwtoken === "abc123") {
     console.log("Token är giltig");
-    res.json({
-      name: "T-Rex",
-      postcode: 12345,
-      userId: 666
-    });
+    res.json(userData);
   } else {
     console.log("Token är inte giltig");
     res.sendStatus(403);
   }
 });
 
-app.listen(PORT);
+app.listen(PORT, () => {
+  console.log("MOCK API KÖRS PÅ PORT " + PORT);
+});

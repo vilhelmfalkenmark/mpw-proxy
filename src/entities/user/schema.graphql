@@ -1,0 +1,9 @@
+type userType {
+  userId: ID
+  name: String
+  postcode: Int
+}
+
+extend type Query {
+  getUser: userType
+}

@@ -4,6 +4,7 @@ import { lensPath, view } from "ramda";
 const dataLens = lensPath(["data"]); // Every response in Axios is in the .data node
 
 export default ({ headers }) => {
+  const token = view(lensPath(["token"]), headers);
 
   /**
    * @function asyncRequest
@@ -13,7 +14,7 @@ export default ({ headers }) => {
   const asyncRequest = axios.create({
     timeout: 20000,
     headers: {
-      jwtoken: view(lensPath(["token"]), headers)
+      jwtoken: token || "null"
     }
   });
 
@@ -37,7 +38,8 @@ export default ({ headers }) => {
         ...view(dataLens, response)
       }))
       .catch(error => {
-        console.error("Det blev en error i getRequest => ", error);
+        console.error("Det blev en error i getRequest på path ", path);
+        // console.error("Det blev en error i getRequest => ", error);
         return {
           error: error,
           message: "Det blev en error"
@@ -52,6 +54,7 @@ export default ({ headers }) => {
    */
 
   const postRequest = ({ path, data }) =>
+    console.log(data, " data i postRequest") ||
     asyncRequest
       .post(path, data)
       .then(response => ({

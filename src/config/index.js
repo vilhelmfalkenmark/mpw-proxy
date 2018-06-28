@@ -1,5 +1,8 @@
 export default {
   persistedQueries: false,
   apiPath: "/api",
-  graphiqlPath: "/graphiql"
+  graphiqlPath: "/graphiql",
+  headers: {
+    token: "abc123"
+  }
 };

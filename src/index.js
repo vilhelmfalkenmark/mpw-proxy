@@ -1,7 +1,7 @@
 import { graphqlExpress, graphiqlExpress } from "apollo-server-express";
 import express from "express";
 import bodyParser from "body-parser";
-import path from "path";
+// import path from "path";
 import cors from "cors";
 
 import config from "./config";
@@ -43,6 +43,7 @@ server.use(
 server.use(
   config.graphiqlPath,
   graphiqlExpress({
+    passHeader: JSON.stringify(config.headers).replace(/[{}]/g, ""),
     endpointURL: config.apiPath
   })
 );

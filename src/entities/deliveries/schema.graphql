@@ -1,0 +1,17 @@
+type deliveryType {
+  date: String
+  postCode: Int
+}
+
+type deliveriesType {
+  deliveries: [deliveryType]
+}
+
+input deliveryIdArg {
+  deliveryId: Int!
+}
+
+extend type Query {
+  getDeliveries: deliveriesType
+  getDelivery(params: deliveryIdArg): deliveryType
+}
