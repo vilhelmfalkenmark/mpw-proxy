@@ -4,7 +4,6 @@ import { lensPath, view } from "ramda";
 const dataLens = lensPath(["data"]); // Every response in Axios is in the .data node
 
 export default ({ headers }) => {
-  console.log(headers, " headers");
 
   /**
    * @function asyncRequest
@@ -12,7 +11,10 @@ export default ({ headers }) => {
    * @returns {Promise} a HTTP promise
    */
   const asyncRequest = axios.create({
-    timeout: 20000
+    timeout: 20000,
+    headers: {
+      jwtoken: view(lensPath(["token"]), headers)
+    }
   });
 
   /**

@@ -1,3 +1,5 @@
+import contentfulConfig from "../config/contentful";
+
 export default {
   testEndpoints: {
     getNumber: ({ numberArg }) =>
@@ -13,6 +15,9 @@ export default {
     postAuthentication: () => `http://localhost:8888/authentication`
   },
   userEndpoints: {
-    getUser: ({ token }) => `http://localhost:8888/user?token=${token}`
+    getUser: () => `http://localhost:8888/user`
+  },
+  contentfulPageEndpoints: {
+    getPage: ({ path }) => `${contentfulConfig.deliveryApiPath}/spaces/${contentfulConfig.spaceId}/environments/${contentfulConfig.environmentId}/entries?access_token=${contentfulConfig.deliveryAccessToken}&content_type=page&fields.path=${path}`
   }
 };

@@ -29,7 +29,13 @@ server.use(cors());
 server.use(
   config.apiPath,
   graphqlExpress(req => ({
-    schema: schema({ headers: req.headers })
+    schema: schema({ headers: req.headers }),
+    formatError(err) {
+      return {
+        message: err.message,
+        code: err.originalError && err.originalError.code
+      };
+    }
   }))
 );
 

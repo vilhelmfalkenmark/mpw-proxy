@@ -6,15 +6,23 @@ export default ({ connector, endpoints }) => {
   return {
     resolvers: Resolvers({ model }),
     typeDefs: `
-    type userType {
-      userId: ID
-      name: String
-      postcode: Int
+    type pageType {
+      fields: fieldsType
+    }
+
+    type fieldsType {
+      title: String
+      path: String
+      body: String
+    }
+
+    input pageArg {
+      path: String!
     }
 
     ##### QUERY ####
     extend type Query {
-      getUser: userType
+      getPage(params: pageArg) : pageType
     }`
   };
 };

@@ -31,6 +31,8 @@ app.get("/number", (req, res) => {
 });
 
 app.get("/deliveries", (req, res) => {
+  console.log(req.headers, " headers i MOCK API");
+
   res.json({ deliveries });
 });
 
@@ -51,13 +53,17 @@ app.post("/authentication", (req, res) => {
 });
 
 app.get("/user", (req, res) => {
-  if (req.query.token === "hello") {
+  if (req.headers.jwtoken === "abc123") {
+    console.log("Token är giltig");
     res.json({
-      name: "thierry",
-      postcode: 00000
+      name: "T-Rex",
+      postcode: 12345,
+      userId: 666
     });
+  } else {
+    console.log("Token är inte giltig");
+    res.sendStatus(403);
   }
-  res.send(404);
 });
 
 app.listen(PORT);

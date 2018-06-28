@@ -9,6 +9,7 @@ import Test from "./test";
 import Deliveries from "./deliveries";
 import Authentication from "./authentication";
 import User from "./user";
+import Page from "./page";
 
 export default ({ headers }) => {
   const connector = HTTPconnector({ headers });
@@ -36,12 +37,18 @@ export default ({ headers }) => {
     endpoints: endpoints.userEndpoints
   });
 
+  const pageEntity = Page({
+    connector,
+    endpoints: endpoints.contentfulPageEndpoints
+  });
+
   // All initialized entities should be listed in this array
   const entitiesArray = [
     testEntity,
     deliveriesEntity,
     authenticationEntity,
-    userEntity
+    userEntity,
+    pageEntity
   ];
 
   const combinedResolve = arr =>

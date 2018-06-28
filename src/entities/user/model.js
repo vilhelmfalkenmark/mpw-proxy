@@ -7,9 +7,9 @@ export default ({ connector, endpoints }) => {
    */
   //////////////////////////////////////////////////
 
-  const getUser = ({ token }) =>
+  const getUser = () =>
     connector
-      .getRequest({ path: endpoints.getUser({ token }) })
+      .getRequest({ path: endpoints.getUser() })
       .then(response => response);
 
   return {
