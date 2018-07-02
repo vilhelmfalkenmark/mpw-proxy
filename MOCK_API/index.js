@@ -20,7 +20,7 @@ const deliveries = [
     postCode: 12000
   }
 ];
-const userData = {
+const currentUser = {
   name: "T-Rex",
   postcode: 12345,
   userId: 666
@@ -53,7 +53,7 @@ app.post("/authentication/phonenumber", (req, res) => {
   console.log("Körs mot /authentication/phonenumber");
 
   console.log(req.body);
-  res.json({ token: "abc123", userData });
+  res.json({ token: "abc123", currentUser });
   // if (req.body.token === 1) {
   //   res.json({ authenticated: true });
   // } else {
@@ -64,7 +64,7 @@ app.post("/authentication/phonenumber", (req, res) => {
 app.get("/user", (req, res) => {
   if (req.headers.jwtoken === "abc123") {
     console.log("Token är giltig");
-    res.json(userData);
+    res.json(currentUser);
   } else {
     console.log("Token är inte giltig");
     res.sendStatus(403);

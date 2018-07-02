@@ -1,6 +1,6 @@
 type tokenType {
   token: String!
-  userData: userType
+  currentUser: userType
 }
 
 input phoneAuthenticationArgs {
